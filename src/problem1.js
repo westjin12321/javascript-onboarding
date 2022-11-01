@@ -39,6 +39,33 @@ function SeparateDigits(){
   }
 }
 
+//<각각 합, 곱값들의 맥스값 구하기>
+//pobiArr[0]~[2]의 합곱, [3]~[5]의 합곱 -> 총 4가지의 값들을 pobiMaxTempArr에 넣어두기
+//crong도 같은 방식
+function Max(){
+  var pobiMaxTempArr = new Array();
+  var crongMaxTempArr = new Array();
+  var pobiMax;
+  var crongMax;
+
+  for(var i=0; i<3; i++){ //[0]: 포비와 크롱의 왼페이지들의 합 , [1]: 왼페이지들의 곱, [2]: 포비와 크롱의 오른페이지들의 합 , [3]: 오른페이지들의 곱
+    pobiMaxTempArr[0] = pobiMaxTempArr[0] + pobiArr[i];
+    crongMaxTempArr[0] = crongMaxTempArr[0] + crongArr[i];
+
+    pobiMaxTempArr[1] = pobiMaxTempArr[0] * pobiArr[i];
+    crongMaxTempArr[1] = crongMaxTempArr[0] * crongArr[i];
+
+    pobiMaxTempArr[2] = pobiMaxTempArr[2] + pobiArr[i+3];
+    crongMaxTempArr[2] = crongMaxTempArr[2] + crongArr[i+3];
+
+    pobiMaxTempArr[3] = pobiMaxTempArr[3] * pobiArr[i+3];
+    crongMaxTempArr[3] = crongMaxTempArr[3] * crongArr[i+3];
+  }
+
+  pobiMax = math.Max(pobiMaxTempArr);
+  crongMax = math.Max(crongMaxTempArr);  
+}
+
 function problem1(pobi, crong) {
   var answer;
 
